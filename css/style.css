@@ -38,7 +38,7 @@ ul {
     bottom: 0;
     left: 0;
     right: 0;
-    margin-bottom: 10px;
+    margin-top: 10px;
     margin-left: 10px;
     margin-right: 3px;
     align-self: center;
@@ -68,6 +68,9 @@ ul {
 
 .selectedClip{
     background-color: rgb(229, 255, 255);
+}
+.selectedClip:hover {
+    background-color: rgb(221, 255, 255);
 }
 
 .clipData{

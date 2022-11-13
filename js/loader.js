@@ -1,3 +1,5 @@
+const {ipcRenderer} = require('electron');
+
 var lastSelectedClip = 0;
 
 function loadCilpSection(type, data, index){
@@ -24,10 +26,19 @@ function loadCilpSection(type, data, index){
     `;
     console.log(navigator.clipboard.getText);
     document.write(html);
+    if (index == 0){
+        fixMargin(0);
+    }
 }
 
 function setSelected(id){
     document.getElementById('clip'+lastSelectedClip).setAttribute("class", "clipItem");
     document.getElementById('clip'+id).setAttribute("class", "clipItem selectedClip");
     lastSelectedClip = id;
+    ipcRenderer.send("windowVsisbility", 0);
+}
+
+function fixMargin(id){
+    var element = document.getElementById('clip'+id);
+    element.style.marginTop = "0px";
 }

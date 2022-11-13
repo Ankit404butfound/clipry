@@ -64,11 +64,14 @@ ipcMain.on('asynchronous-message', (event, arg) => {
     event.sender.send('asynchronous-reply', 'async pong')
  })
 
- ipcMain.on('synchronous-message', (event, arg) => {
-    console.log(arg)
- 
-    // Event emitter for sending asynchronous messages
-    event.sender.send('synchronous-reply', 'sync pong')
+ ipcMain.on("windowVsisbility", (event, isVisible) => {
+    if (isVisible == 1){
+        win.show();
+    }
+    else{
+        win.hide();
+        ks.sendCombination(['control', 'v']);
+    }
  })
 
 
