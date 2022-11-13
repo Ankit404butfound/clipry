@@ -64,12 +64,19 @@ ipcMain.on('asynchronous-message', (event, arg) => {
     event.sender.send('asynchronous-reply', 'async pong')
  })
 
- ipcMain.on("windowVsisbility", (event, isVisible) => {
+ ipcMain.on("windowVsisbility", (event, isVisible, type=null, data=null) => {
     if (isVisible == 1){
         win.show();
     }
     else{
         win.hide();
+        if (type == "text"){
+            clipboard.writeText(data);
+        }
+        else if (type == "image"){
+            clipboard.writeImage(data);
+        }
+        
         ks.sendCombination(['control', 'v']);
     }
  })

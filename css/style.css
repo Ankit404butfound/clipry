@@ -79,23 +79,33 @@ ul {
     margin-top: 5px;
     margin-bottom: 5px;
     font-size: 15px;
+    width: 98%;
+    max-width: 98%;
     color: rgb(101, 101, 101);
     overflow: hidden !important;
     text-overflow: ellipsis;
     display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+
+.clipData img{
+    width: 60px;
+    height: 60px;
+    /* object-fit: cover; */
 }
 
 .clipButton{
     height: 21vh;
-    width: 20px;
+    width: 2%;
     vertical-align:middle;
     background-color: transparent;
 }
 
 .clipButton button{
     background-color: transparent;
+    float: right;
     border: none;
     font-weight: bold;
     color: rgb(84, 84, 84);
