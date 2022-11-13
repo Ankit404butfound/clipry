@@ -3,6 +3,6 @@
 
 ![image](image/sample1.jpeg)
 
-### This is a Linux implementation of Windows-like clip-boaard history manager made using ElectronJS framework.
+This is a Linux implementation of Windows-like clip-boaard history manager made using ElectronJS framework.
 
 
