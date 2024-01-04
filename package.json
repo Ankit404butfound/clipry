@@ -15,5 +15,8 @@
     "gkm": "^0.2.0",
     "node-key-sender": "^1.0.11",
     "sleep": "^6.3.0"
+  },
+  "devDependencies": {
+    "electron-packager": "^17.1.1"
   }
 }

@@ -42,7 +42,7 @@ ul {
     margin-left: 10px;
     margin-right: 3px;
     align-self: center;
-    background-color: rgba(243, 255, 255);
+    background-color: rgb(246, 255, 255);
     height: 21vh;
     width: auto;
     overflow: hidden;
@@ -99,7 +99,7 @@ ul {
 .clipButton{
     height: 21vh;
     width: 2%;
-    vertical-align:middle;
+    vertical-align:top;
     background-color: transparent;
 }
 
@@ -107,6 +107,55 @@ ul {
     background-color: transparent;
     float: right;
     border: none;
-    font-weight: bold;
-    color: rgb(84, 84, 84);
+    color: rgb(129, 129, 129);
 }
+
+li {
+    transition: opacity 0.3s;
+}
+.removed {
+  opacity: 0;
+}
+
+/* Popup Menu */
+.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: #f1f1f1;
+    width: 30%;
+    overflow: auto;
+    height: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-left: -28%;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+  }
+  
+  .dropdown-content a:hover {background-color: rgb(227, 237, 237);}
+  
+  .show {display: block;}
