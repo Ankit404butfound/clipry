@@ -13,7 +13,10 @@ function loadCilpSection(type, data, index) {
     }
 
     if (type == "text") {
-        clipData = data;
+        // clipData = data;
+        clipData = document.createElement('div');
+        clipData.innerText = data;
+        clipData = clipData.innerHTML;
     }
     else if (type == "image") {
         clipData = `<img src="${data}">`;
@@ -91,6 +94,7 @@ function setSelected(id) {
 function removeClip(index) {
     // toggleMenu(index);
     console.log("removeClip");
+    ipcRenderer.send("removeClip", index);
     target = document.getElementById('clip' + index);
     target.classList.add("removed");
     target.addEventListener("transitionend", () => 
@@ -123,5 +127,10 @@ ipcRenderer.on('addClip', (event, type, data, index) => {
     var ul = document.getElementById("clipData");
     var html = loadCilpSection(type, data, index);
     ul.innerHTML = html + ul.innerHTML;
+    setSelected(index);
+});
+
+
+ipcRenderer.on('setSelected', (event, index) => {
     setSelected(index);
 });

@@ -1,5 +1,5 @@
 # Clipry
-## Windows like clip-borad manager for Linux, Copy paste eith style
+## Windows like clip-borad manager for Linux, Copy paste with style
 
 ![image](demo/sample1.gif)
 

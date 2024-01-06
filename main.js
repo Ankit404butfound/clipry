@@ -16,8 +16,8 @@ function createWindow() {
     win = new BrowserWindow({ width: 350, height: 400,
         x: 50, y: 50,
         autoHideMenuBar: true,
-        // maximizable: false,
-        // resizable: false,
+        maximizable: false,
+        resizable: false,
         titleBarStyle: 'hidden',
         frame: false,
         animation: false,
@@ -51,16 +51,21 @@ function createWindow() {
 app.on('ready', () => {
     createWindow();
     
-    globalShortcut.register('CommandOrControl+Shift+V', () => {
+    globalShortcut.register('CommandOrControl+Super+Shift+V', () => {
         // win.hide();
         // ks.sendCombination(['control', 'v']);
         
         // console.log(clipboard.availableFormats());
-        // Make app visible
-        console.log("CommandOrCOntrol+Super+V");
+        // Make app 315371
         var mouseDetails = screen.getCursorScreenPoint();
         win.setPosition(mouseDetails.x, mouseDetails.y);
         win.show();
+    });
+
+    globalShortcut.register('CommandOrControl+Super+Shift+X', () => {
+        // Kill app
+        app.quit();
+        process.exit(0);
     });
 })
 
@@ -72,7 +77,6 @@ ipcMain.on('asynchronous-message', (event, arg) => {
  })
 
  ipcMain.on("paste", (event, isVisible, type=null, data=null) => {
-    console.log(type);
     if (isVisible == 1){
         win.show();
     }
@@ -87,7 +91,13 @@ ipcMain.on('asynchronous-message', (event, arg) => {
         
         ks.sendCombination(['control', 'v']);
     }
- })
+ });
+
+
+ ipcMain.on("removeClip", (event, id) => {
+    delete clipContents[id];
+ });
+
 
  setInterval(() => {
     // console.log(clipboard.readText());
@@ -96,7 +106,6 @@ ipcMain.on('asynchronous-message', (event, arg) => {
     // clipboard.clear();
     // clipboard.writeImage(nativeImage.createFromDataURL(data));
     // console.log(clipboard.has("image/p;ng"));
-    console.log(lastClipData)
     if (clipboard.has("image/png") && lastClipData != clipboard.readImage().toDataURL()){
         maxID += 1;
         win.webContents.send('addClip', "image", clipboard.readImage().toDataURL(), maxID);
@@ -108,10 +117,9 @@ ipcMain.on('asynchronous-message', (event, arg) => {
             maxID += 1;
             clipContents[maxID] = clipboard.readText();
             win.webContents.send('addClip', "text", clipboard.readText(), maxID);
-            console.log("Added", maxID);
         }
         else{
-            console.log("Already exists at", key);
+            win.webContents.send('setSelected', key);
         }
     }
     else{
